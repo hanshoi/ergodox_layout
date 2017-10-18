@@ -40,21 +40,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LT(1, KC_GRV),  KC_TRNS,        KC_TRNS, KC_LEFT,KC_RGHT,
 
                                               // left thumb clusters
-                                              ALT_T(KC_APP),  KC_LGUI,
-                                                              KC_HOME,
-                                               KC_SPC,KC_BSPC,KC_END,
+                                              ALT_T(KC_APP),          KC_LGUI,
+                                                                      KC_HOME,
+                                              KC_BSPC, SFT_T(KC_TAB), KC_LGUI,
 
         
         // right hand
-             KC_RGHT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_BSLS,
-             TG(1),       KC_F,   KC_G,   KC_C,   KC_R,   KC_L,             KC_SLSH,
-                          KC_D,   KC_H,   KC_T,   KC_N,   LT(MDIA, KC_S),   KC_MINS,
-             MEH_T(KC_NO),KC_B,   KC_M,   KC_W,   KC_V,   CTL_T(KC_Z),      KC_RSFT,
-                                  KC_UP,  KC_DOWN,KC_LBRC,KC_RBRC,          KC_FN1,
+             KC_RBRC,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_EQL,
+             KC_BSPACE,   KC_F,   KC_G,   KC_C,   KC_R,   KC_L,             KC_SLSH,
+                          KC_D,   KC_H,   KC_T,   KC_N,   KC_S,             KC_MINS,
+             KC_RPRN,     KC_B,   KC_M,   KC_W,   KC_V,   KC_Z,             KC_BSLASH,
+                                  KC_UP,  KC_DOWN,KC_LCBR,KC_RCBR,          MO(1),
         // right thumb cluster
-             KC_LALT,        CTL_T(KC_ESC),
+             KC_LALT,            CTL_T(KC_ESC),
              KC_PGUP,
-             KC_PGDN,KC_TAB, KC_ENT
+             KC_PGDN,  CTL_T(KC_ENTER), KC_SPC
     ),
 /* Keymap 1: Symbol Layer
  *
