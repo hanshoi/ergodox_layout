@@ -5,6 +5,8 @@ for Ergodox EZ keyboard.
 This is a modified version of the original Dvorak layout in qmk_firmware
 repository.
 
+![alt text](https://github.com/hanshoi/ergodox_layout/blob/master/keyboard-layout.png "Base layer")
+
 ## Install
 You need qmk_firmware if you want to compile this yourself. 
 If you are satisfied with just flashing it into your device
