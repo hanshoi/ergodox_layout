@@ -16,6 +16,10 @@ You can install all prerequisities with running:
 make install
 ```
 
+Word of warning though, that install command does everything for you, 
+including installing some stuff on your computer, so you might want 
+to run everything by hand.
+
 ## Usage
 ```bash
 make build  # to compile
