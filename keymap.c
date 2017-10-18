@@ -1,14 +1,14 @@
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
-#include "keymap_nordic.h"
+#include "keymap_swedish.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Basic layer
+/* Keymap 0: Basic layer  // NOTE: this is not an actual depiction of how this looks like
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   \    |
@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,       KC_QUOT,        KC_COMM, KC_DOT, KC_P,   KC_Y,   KC_DELETE,
         KC_EQUAL,       KC_A,           KC_O,    KC_E,   KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN), KC_Q,    KC_J,   KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  KC_TRNS,        KC_TRNS, KC_LEFT,KC_RGHT,
+        LT(1, KC_GRV),  NO_OSLH,        NO_AE,   KC_LEFT,KC_RGHT,
 
                                               // left thumb clusters
                                               ALT_T(KC_APP),          KC_LGUI,
