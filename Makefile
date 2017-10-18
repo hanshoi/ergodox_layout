@@ -1,9 +1,9 @@
 .DEFAULT_GOAL := flash
 
-CFILE=ergodox_ez_firmware_krboxy.c
+CFILE=keymap.c
+HEXFILE=keymap.hex
 CLI=./teensy/teensy_loader_cli
 
-HEXFILE=.hex
 TMPFOLDER=qmk_firmware/layouts/community/ergodox/mylayout
 
 flash:
@@ -12,6 +12,7 @@ flash:
 build:
 	cp $(CFILE) $(TMPFOLDER)
 	cd qmk_firmware && make ergodox_ez:mylayout
+	cp qmk_firmware/.build/ergodox_ez_mylayout.hex ./$(HEXFILE)
 
 install:
 	sudo apt install libusb-dev build-essential gcc unzip wget zip gcc-avr binutils-avr avr-libc dfu-programmer dfu-util gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi git
