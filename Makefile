@@ -7,7 +7,7 @@ flash:
 	$CLI -v -mmcu=atmega32u4 $HEXFILE
 
 build:
-	cd qmk_firmware && make
+	cd qmk_firmware && make ergodox_ez:dvorak_programmer
 
 install:
 	sudo apt install libusb-dev build-essential gcc unzip wget zip gcc-avr binutils-avr avr-libc dfu-programmer dfu-util gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi git
