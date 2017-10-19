@@ -1,9 +1,12 @@
-# Hanshoi's Ergodox EZ Dvorak
+# Hanshoi's Ergodox EZ ArkkuDvorak
 
 *TODO: This is Work in Progress, don't use yet.*
 
-Dvorak layout modified for tile based window manager and emacs usage
+ArkkuDvorak layout modified for tile based window manager and emacs usage
 for Ergodox EZ keyboard.
+
+Arkkudvorak is basic dvorak with finnish ä and ö letters added to enable
+writing finnish with it.
 
 This is a modified version of the original Dvorak layout in qmk_firmware
 repository.
