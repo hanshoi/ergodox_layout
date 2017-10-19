@@ -7,8 +7,13 @@
 #define MDIA 2 // media keys
 
 // my keys
-#define AUML UC(0x00E4)
-#define OUML UC(0x00F6)
+#define AUML    0x00E4  // ä
+#define OUML    0x00F6  // ö
+#define B_AUML  0x00C4  // Ä
+#define B_OUML  0x00D6  // Ö
+
+// Used for SHIFT keys
+#define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -23,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|  (   |           |  )   |------+------+------+------+------+--------|
  * | LShift |:/Ctrl|   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  |   \    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  ö   |   ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
+ *   |Grv/L1|  Ö   |   Ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | App  | End  |       | Alt  |Ctrl/Esc|
@@ -41,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,       KC_QUOT,        KC_COMM, KC_DOT, KC_P,   KC_Y,   KC_DELETE,
         KC_EQUAL,       KC_A,           KC_O,    KC_E,   KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN), KC_Q,    KC_J,   KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  OUML,           AUML,    KC_LEFT,KC_RGHT,
+        LT(1, KC_GRV),  F(1),           F(0),    KC_LEFT,KC_RGHT,
 
                                               // left thumb clusters
                                               ALT_T(KC_APP),          KC_END,
@@ -145,9 +150,44 @@ LAYOUT_ergodox(
 ),
 };
 
-const uint16_t PROGMEM fn_actions[] = {
-    [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
+enum function_id {
+    SHIFT_AUML,
+    SHIFT_OUML,
 };
+
+// function to help with shift key preses
+void shift_press(keyrecord_t *record, uint16_t keycode, uint16_t shifted_keycode) {
+  static uint8_t shift_mask;
+  shift_mask = get_mods()&MODS_SHIFT_MASK;  // get shift if pressed
+  if (record->event.pressed) {
+    if (shift_mask) {
+      unicode_input_start();
+      register_hex(shifted_keycode);
+      unicode_input_finish();
+    } else {
+      unicode_input_start();
+      register_hex(keycode);
+      unicode_input_finish();
+    }
+  }
+}
+
+const uint16_t PROGMEM fn_actions[] = {
+  [0] = ACTION_FUNCTION(SHIFT_AUML),
+  [1] = ACTION_FUNCTION(SHIFT_OUML),
+};
+
+void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
+  switch (id) {
+    case SHIFT_AUML:
+      shift_press(record, AUML, B_AUML);
+      break;
+  case SHIFT_OUML:
+      shift_press(record, OUML, B_OUML);
+      break;
+  }
+}
+
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
