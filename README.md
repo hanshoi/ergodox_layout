@@ -1,4 +1,7 @@
 # Hanshoi's Ergodox EZ Dvorak
+
+*TODO: This is Work in Progress, don't use yet.*
+
 Dvorak layout modified for tile based window manager and emacs usage
 for Ergodox EZ keyboard.
 
@@ -8,9 +11,9 @@ repository.
 ![alt text](https://github.com/hanshoi/ergodox_layout/blob/master/keyboard-layout.png "Base layer")
 
 ## Install
-You need qmk_firmware if you want to compile this yourself. 
+You need qmk_firmware if you want to compile this yourself.
 If you are satisfied with just flashing it into your device
-then installing teensy-cli will suffice. 
+then installing teensy-cli will suffice.
 
 You can install all prerequisities with running:
 
@@ -18,13 +21,13 @@ You can install all prerequisities with running:
 make install
 ```
 
-Word of warning though, that install command does everything for you, 
-including installing some stuff on your computer, so you might want 
+Word of warning though, that install command does everything for you,
+including installing some stuff on your computer, so you might want
 to run everything by hand.
 
 ## Usage
 ```bash
-make build  # to compile
+make build  # to compile, (needed only if you have changed keymap.c)
 make flash  # to flash into device
 ```
 
