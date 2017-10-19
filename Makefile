@@ -7,7 +7,7 @@ CLI=./teensy/teensy_loader_cli
 TMPFOLDER=qmk_firmware/layouts/community/ergodox/mylayout
 
 flash:
-	$CLI -v -mmcu=atmega32u4 $HEXFILE
+	$(CLI) -v -mmcu=atmega32u4 $(HEXFILE)
 
 build:
 	cp $(CFILE) $(TMPFOLDER)
@@ -25,6 +25,7 @@ install:
 
 clean:
 	rm -f *.hex
+	rm -rf qmk_firmware/.build/*
 
 clean-install:
 	rm -rf teensy
