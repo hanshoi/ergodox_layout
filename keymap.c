@@ -1,11 +1,15 @@
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
-#include "keymap_swedish.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
+
+// my keys
+#define AUML UC(0x00E4)
+#define OUML UC(0x00F6)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -19,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|  (   |           |  )   |------+------+------+------+------+--------|
  * | LShift |:/Ctrl|   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  |   \    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  Ö   |   Ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
+ *   |Grv/L1|  ö   |   ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | App  | End  |       | Alt  |Ctrl/Esc|
@@ -37,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,       KC_QUOT,        KC_COMM, KC_DOT, KC_P,   KC_Y,   KC_DELETE,
         KC_EQUAL,       KC_A,           KC_O,    KC_E,   KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN), KC_Q,    KC_J,   KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  NO_OSLH,        NO_AE,   KC_LEFT,KC_RGHT,
+        LT(1, KC_GRV),  OUML,           AUML,    KC_LEFT,KC_RGHT,
 
                                               // left thumb clusters
                                               ALT_T(KC_APP),          KC_END,
