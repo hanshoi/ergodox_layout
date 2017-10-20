@@ -7,8 +7,8 @@
 #define MDIA 2 // media keys
 
 // my keys
-#define AUML    0x00E4  // ä
-#define OUML    0x00F6  // ö
+#define AUML    0xE4  // ä
+#define OUML    0xF6  // ö
 #define B_AUML  0x00C4  // Ä
 #define B_OUML  0x00D6  // Ö
 
@@ -42,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_ESC,         KC_1,           KC_2,    KC_3,   KC_4,   KC_5,   KC_LBRC,
-        KC_GRAVE,       KC_QUOT,        KC_COMM, KC_DOT, KC_P,   KC_Y,   KC_DELETE,
-        KC_EQUAL,       KC_A,           KC_O,    KC_E,   KC_U,   KC_I,
-        KC_LSFT,        CTL_T(KC_SCLN), KC_Q,    KC_J,   KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  F(1),           F(0),    KC_LEFT,KC_RGHT,
+        KC_ESC,         KC_1,           KC_2,     KC_3,    KC_4,   KC_5,   KC_LBRC,
+        KC_GRAVE,       KC_QUOT,        KC_COMM,  KC_DOT,  KC_P,   KC_Y,   KC_DELETE,
+        KC_EQUAL,       KC_A,           KC_O,     KC_E,    KC_U,   KC_I,
+        KC_LSFT,        CTL_T(KC_SCLN), KC_Q,     KC_J,    KC_K,   KC_X,   KC_LPRN,
+        LT(1, KC_GRV),  F(1),           F(0),     KC_LEFT, KC_RGHT,
 
                                               // left thumb clusters
                                               ALT_T(KC_APP),          KC_END,
@@ -55,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         
         // right hand
-             KC_RBRC,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_EQL,
-             KC_BSPACE,   KC_F,   KC_G,   KC_C,   KC_R,   KC_L,             KC_SLSH,
-                          KC_D,   KC_H,   KC_T,   KC_N,   KC_S,             KC_MINS,
-             KC_RPRN,     KC_B,   KC_M,   KC_W,   KC_V,   KC_Z,             KC_BSLASH,
-                                  KC_UP,  KC_DOWN,KC_LCBR,KC_RCBR,          MO(1),
+             KC_RBRC,     KC_6,   KC_7,   KC_8,    KC_9,    KC_0,       KC_EQL,
+             KC_BSPACE,   KC_F,   KC_G,   KC_C,    KC_R,    KC_L,       KC_SLSH,
+                          KC_D,   KC_H,   KC_T,    KC_N,    KC_S,       KC_MINS,
+             KC_RPRN,     KC_B,   KC_M,   KC_W,    KC_V,    KC_Z,       KC_BSLASH,
+                                  KC_UP,  KC_DOWN, KC_LCBR, KC_RCBR,    MO(1),
         // right thumb cluster
              KC_LALT,            CTL_T(KC_ESC),
              KC_PGUP,
@@ -155,7 +155,7 @@ enum function_id {
     SHIFT_OUML,
 };
 
-// function to help with shift key preses
+// function to help with shift key preses and unicode
 void shift_press(keyrecord_t *record, uint16_t keycode, uint16_t shifted_keycode) {
   static uint8_t shift_mask;
   shift_mask = get_mods()&MODS_SHIFT_MASK;  // get shift if pressed
@@ -206,7 +206,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-
+  set_unicode_input_mode(UC_LNX);
 };
 
 // Runs constantly in the background, in a loop.
