@@ -7,10 +7,8 @@
 #define MDIA 2 // media keys
 
 // my keys
-#define AUML    0xE4  // ä
-#define OUML    0xF6  // ö
-#define B_AUML  0x00C4  // Ä
-#define B_OUML  0x00D6  // Ö
+#define KC_ADIA KC_NONUS_BSLASH     // ä
+#define KC_ODIA S(KC_NONUS_BSLASH)  // ö
 
 // Used for SHIFT keys
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
@@ -28,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|  (   |           |  )   |------+------+------+------+------+--------|
  * | LShift |:/Ctrl|   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  |   \    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  Ö   |   Ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
+ *   |Grv/L1|  ö   |   ä  | Left | Right|                                       |  Up  | Down |   {  |   }  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | App  | End  |       | Alt  |Ctrl/Esc|
@@ -46,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,       KC_QUOT,        KC_COMM,  KC_DOT,  KC_P,   KC_Y,   KC_DELETE,
         KC_EQUAL,       KC_A,           KC_O,     KC_E,    KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN), KC_Q,     KC_J,    KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  F(1),           F(0),     KC_LEFT, KC_RGHT,
+        LT(1, KC_GRV),  KC_ODIA,        KC_ADIA,  KC_LEFT, KC_RGHT,
 
                                               // left thumb clusters
                                               ALT_T(KC_APP),          KC_END,
@@ -173,17 +171,17 @@ void shift_press(keyrecord_t *record, uint16_t keycode, uint16_t shifted_keycode
 }
 
 const uint16_t PROGMEM fn_actions[] = {
-  [0] = ACTION_FUNCTION(SHIFT_AUML),
-  [1] = ACTION_FUNCTION(SHIFT_OUML),
+  //  [0] = ACTION_FUNCTION(SHIFT_AUML),
+  //  [1] = ACTION_FUNCTION(SHIFT_OUML),
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch (id) {
     case SHIFT_AUML:
-      shift_press(record, AUML, B_AUML);
+      //      shift_press(record, AUML, B_AUML);
       break;
   case SHIFT_OUML:
-      shift_press(record, OUML, B_OUML);
+    //      shift_press(record, OUML, B_OUML);
       break;
   }
 }

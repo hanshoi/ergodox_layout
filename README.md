@@ -14,6 +14,8 @@ repository.
 ![alt text](https://github.com/hanshoi/ergodox_layout/blob/master/keyboard-layout.png "Base layer")
 
 ## Install
+You need ArkkuDvorak running on your OS for this one to work (http://arkku.com/dvorak/).
+
 You need qmk_firmware if you want to compile this yourself.
 If you are satisfied with just flashing it into your device
 then installing teensy-cli will suffice.
