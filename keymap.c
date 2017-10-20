@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
+#include "keymap_nordic.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -9,6 +10,11 @@
 // my keys
 #define KC_ADIA KC_NONUS_BSLASH     // ä
 #define KC_ODIA S(KC_NONUS_BSLASH)  // ö
+#define KC_B_ADIA ALGR(KC_A)        // Ä
+#define KC_B_ODIA ALGR(KC_O)        // Ö
+
+#define ADIA F(0)  // ä/Ä
+#define ODIA F(1)  // ö/Ö
 
 // Used for SHIFT keys
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
@@ -153,35 +159,33 @@ enum function_id {
     SHIFT_OUML,
 };
 
-// function to help with shift key preses and unicode
+// function to help with shift key preses
 void shift_press(keyrecord_t *record, uint16_t keycode, uint16_t shifted_keycode) {
   static uint8_t shift_mask;
   shift_mask = get_mods()&MODS_SHIFT_MASK;  // get shift if pressed
   if (record->event.pressed) {
     if (shift_mask) {
-      unicode_input_start();
-      register_hex(shifted_keycode);
-      unicode_input_finish();
+      add_key(shifted_keycode);
+      send_keyboard_report();
     } else {
-      unicode_input_start();
-      register_hex(keycode);
-      unicode_input_finish();
+      del_key(keycode);
+      send_keyboard_report();
     }
   }
 }
 
 const uint16_t PROGMEM fn_actions[] = {
-  //  [0] = ACTION_FUNCTION(SHIFT_AUML),
-  //  [1] = ACTION_FUNCTION(SHIFT_OUML),
+    [0] = ACTION_FUNCTION(SHIFT_AUML),
+    [1] = ACTION_FUNCTION(SHIFT_OUML),
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch (id) {
     case SHIFT_AUML:
-      //      shift_press(record, AUML, B_AUML);
+      shift_press(record, KC_ADIA, KC_B_ADIA);
       break;
   case SHIFT_OUML:
-    //      shift_press(record, OUML, B_OUML);
+      shift_press(record, KC_ODIA, KC_B_ODIA);
       break;
   }
 }
@@ -204,7 +208,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-  set_unicode_input_mode(UC_LNX);
 };
 
 // Runs constantly in the background, in a loop.
