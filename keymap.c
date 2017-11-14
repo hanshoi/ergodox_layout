@@ -1,7 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
-#include "keymap_nordic.h"
+#include "keymap_dvorak.h"
+
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -10,11 +11,11 @@
 // my keys
 #define KC_ADIA KC_NONUS_BSLASH     // ä
 #define KC_ODIA S(KC_NONUS_BSLASH)  // ö
-#define KC_B_ADIA ALGR(KC_A)        // Ä
-#define KC_B_ODIA ALGR(KC_O)        // Ö
+//#define KC_B_ADIA ALGR(KC_A)        // Ä
+//#define KC_B_ODIA ALGR(KC_O)        // Ö
 
-#define ADIA F(0)  // ä/Ä
-#define ODIA F(1)  // ö/Ö
+//#define ADIA F(0)  // ä/Ä
+//#define ODIA F(1)  // ö/Ö
 
 // Used for SHIFT keys
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
@@ -46,26 +47,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_ESC,         KC_1,           KC_2,     KC_3,    KC_4,   KC_5,   KC_LBRC,
-        KC_GRAVE,       KC_QUOT,        KC_COMM,  KC_DOT,  KC_P,   KC_Y,   KC_DELETE,
-        KC_EQUAL,       KC_A,           KC_O,     KC_E,    KC_U,   KC_I,
-        KC_LSFT,        CTL_T(KC_SCLN), KC_Q,     KC_J,    KC_K,   KC_X,   KC_LPRN,
-        LT(1, KC_GRV),  KC_ODIA,        KC_ADIA,  KC_LEFT, KC_RGHT,
+        KC_ESC,         DV_1,           DV_2,     DV_3,    DV_4,   DV_5,   KC_DELETE,
+        DV_GRV,         DV_QUOT,        DV_COMM,  DV_DOT,  DV_P,   DV_Y,   DV_LBRC,
+        KC_F8,          DV_A,           DV_O,     DV_E,    DV_U,   DV_I,
+        KC_ADIA,        DV_SCLN,        DV_Q,     DV_J,    DV_K,   DV_X,   DV_LPRN,
+        LT(1, DV_GRV),  KC_ODIA,        KC_ADIA,  KC_LEFT, KC_RGHT,
 
                                               // left thumb clusters
-                                              ALT_T(KC_APP),          KC_END,
-                                                                      KC_HOME,
+                                              KC_HOME,          KC_END,
+                                                                      KC_LALT,
                                               KC_BSPC, SFT_T(KC_TAB), KC_LGUI,
 
-        
+
         // right hand
-             KC_RBRC,     KC_6,   KC_7,   KC_8,    KC_9,    KC_0,       KC_EQL,
-             KC_BSPACE,   KC_F,   KC_G,   KC_C,    KC_R,    KC_L,       KC_SLSH,
-                          KC_D,   KC_H,   KC_T,    KC_N,    KC_S,       KC_MINS,
-             KC_RPRN,     KC_B,   KC_M,   KC_W,    KC_V,    KC_Z,       KC_BSLASH,
-                                  KC_UP,  KC_DOWN, KC_LCBR, KC_RCBR,    MO(1),
+             KC_BSPACE,   DV_6,   DV_7,   DV_8,    DV_9,    DV_0,       DV_EQL,
+             DV_RBRC,     DV_F,   DV_G,   DV_C,    DV_R,    DV_L,       DV_SLSH,
+                          DV_D,   DV_H,   DV_T,    DV_N,    DV_S,       DV_MINS,
+             DV_RPRN,     DV_B,   DV_M,   DV_W,    DV_V,    DV_Z,       KC_BSLASH,
+                                  KC_UP,  KC_DOWN, DV_LCBR, DV_RCBR,    MO(1),
         // right thumb cluster
-             KC_LALT,            CTL_T(KC_ESC),
+             KC_RALT,            CTL_T(KC_ESC),
              KC_PGUP,
              KC_PGDN,  CTL_T(KC_ENTER), KC_SPC
     ),
@@ -175,17 +176,17 @@ void shift_press(keyrecord_t *record, uint16_t keycode, uint16_t shifted_keycode
 }
 
 const uint16_t PROGMEM fn_actions[] = {
-    [0] = ACTION_FUNCTION(SHIFT_AUML),
-    [1] = ACTION_FUNCTION(SHIFT_OUML),
+  //    [0] = ACTION_FUNCTION(SHIFT_AUML),
+  //  [1] = ACTION_FUNCTION(SHIFT_OUML),
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch (id) {
     case SHIFT_AUML:
-      shift_press(record, KC_ADIA, KC_B_ADIA);
+      //      shift_press(record, KC_ADIA, KC_B_ADIA);
       break;
   case SHIFT_OUML:
-      shift_press(record, KC_ODIA, KC_B_ODIA);
+    //shift_press(record, KC_ODIA, KC_B_ODIA);
       break;
   }
 }
