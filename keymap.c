@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                               // left thumb clusters
                                               KC_HOME,          KC_END,
-                                                                      KC_LALT,
+                                                                      KC_RALT,
                                               KC_BSPC, SFT_T(KC_TAB), KC_LGUI,
 
 
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              DV_RPRN,     DV_B,   DV_M,   DV_W,    DV_V,    DV_Z,       KC_BSLASH,
                                   KC_UP,  KC_DOWN, DV_LCBR, DV_RCBR,    MO(1),
         // right thumb cluster
-             KC_RALT,            CTL_T(KC_ESC),
+             KC_RALT,            LALT_T(KC_ESC),
              KC_PGUP,
-             KC_PGDN,  CTL_T(KC_ENTER), KC_SPC
+             KC_PGDN,  MT(KC_RCTL ,KC_ENTER), KC_SPC
     ),
 /* Keymap 1: Symbol Layer
  *
